@@ -5,7 +5,7 @@ from manim import *;
 class CreateCircle(Scene):
     def construct(self):
         #square = Square(color=RED).shift(LEFT * 2)
-        circleRed = Circle(color=RED).shift(LEFT * 3)
+        circleRed = Circle(color=RED).shift(LEFT * 4)
         circleRed.set_fill(RED, opacity=0.7)
 
         circleGreen = Circle(color=GREEN)
@@ -16,7 +16,11 @@ class CreateCircle(Scene):
         circleBlue.set_fill(BLUE, opacity=0.7)
         circleBlue.next_to(circleGreen, RIGHT, buff=1)
 
-        circles = {circleRed, circleBlue, circleGreen}
+        circleYellow = Circle(color=YELLOW)
+        circleYellow.set_fill(YELLOW, opacity=0.7)
+        circleYellow.next_to(circleBlue, RIGHT, buff=1)
+
+        circles = {circleRed, circleGreen, circleBlue, circleYellow}
         for circle in circles:
             self.play(Create(circle))
         self.wait()
