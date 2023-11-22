@@ -18,20 +18,25 @@ class CreateCircle(Scene):
         for i in range(N):
             numbersN.append(i)
 
-        permutations = itertools.permutations(numbersN)
-
+        permutations = all_permutations(numbersN)
+       
         for i in range(N):
             m_color=rgb_to_color(colors[i])
             circle = Circle(color=m_color)
             circle.set_fill(m_color, opacity=0.7)
             circles.append(circle)
 
-        for circle in circles:
-            self.play(Create(circle))
-
+        
+        tgt_point = ORIGIN
         for permutation in permutations:
             for i in range(N):
-                self.play(circles[i].move_to([0, permutation[i]/N, 0]))
+                circles[i].move_to([3*permutation[i]/N, 0, 0])
+                print(permutation[i], "           " ,   i)
+            
+            for circle in circles:
+                self.play(Create(circle))
+
+                # self.play()
 
 
         #square = Square(color=RED).shift(LEFT * 2)
@@ -69,3 +74,28 @@ def random_color_generator():
     g = random.random()
     b = random.random()
     return (r, g, b)
+
+def all_permutations(initialList):
+    finalList = list(list())
+    for initial in initialList:
+        finalList.append([initial])
+    for i in range(len(initialList)-1):
+        finalList = add_one_item(finalList, initialList)
+
+    return finalList
+
+
+
+def add_one_item(itemListOfLists, initialList):
+    finalList = list(list())
+    for itemList in itemListOfLists:
+        for initial in initialList:
+            if(not (initial in itemList)):
+                newList = itemList.copy()
+                newList.append(initial)
+                finalList.append(newList)
+                
+
+    return finalList
+                
+
