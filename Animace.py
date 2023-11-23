@@ -29,54 +29,18 @@ class CreateCircle(Scene):
         
         tgt_point = ORIGIN
         for permutation in permutations:
-            # newCircles = []
             animations = []
             for i in range(N):
                 circle = circles[i]
-                # circle.move_to([permutation[i]/N, 0, 0])
-                # newCircles.append(circle)
                 end_point = (10*(permutation[i]/N-1/2+0.5/N), 0, 0)
                 animation = ApplyMethod(circle.move_to, end_point)
                 animations.append(animation)
-                # print(permutation[i], "           " ,   i)
-            
+                
             for animation in animations:
                 self.play(animation)
 
             self.wait(1)
-                # self.play()
-
-
-        #square = Square(color=RED).shift(LEFT * 2)
-        # circleRed = Circle(color=RED).shift(LEFT * 4)
-        # circleRed.set_fill(RED, opacity=0.7)
-
-        # circleGreen = Circle(color=GREEN)
-        # circleGreen.set_fill(GREEN, opacity=0.7)
-        # circleGreen.next_to(circleRed, RIGHT, buff=1)
-
-        # circleBlue = Circle(color=BLUE)
-        # circleBlue.set_fill(BLUE, opacity=0.7)
-        # circleBlue.next_to(circleGreen, RIGHT, buff=1)
-
-        # circleYellow = Circle(color=YELLOW)
-        # circleYellow.set_fill(YELLOW, opacity=0.7)
-        # circleYellow.next_to(circleBlue, RIGHT, buff=1)
-
-        # circles = {circleRed, circleGreen, circleBlue, circleYellow}
-        # for circle in circles:
-        #     self.play(Create(circle))
-        # self.wait()
-        # for circle1 in circles:
-        #     for circle2 in circles:
-        #         self.play(Swap(circle1, circle2), run_time = 0.5)
-
-# napsaní čtverce a kruhu na scénu
-#self.play(Write(square), Write(circle))
-
-# schování čtverce a kruhu ze scény
-#self.play(FadeOut(square), FadeOut(circle), run_time=2)
-
+                
 def random_color_generator():
     r = random.random()
     g = random.random()
