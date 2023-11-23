@@ -29,13 +29,21 @@ class CreateCircle(Scene):
         
         tgt_point = ORIGIN
         for permutation in permutations:
+            # newCircles = []
+            animations = []
             for i in range(N):
-                circles[i].move_to([3*permutation[i]/N, 0, 0])
-                print(permutation[i], "           " ,   i)
+                circle = circles[i]
+                # circle.move_to([permutation[i]/N, 0, 0])
+                # newCircles.append(circle)
+                end_point = (10*(permutation[i]/N-1/2+0.5/N), 0, 0)
+                animation = ApplyMethod(circle.move_to, end_point)
+                animations.append(animation)
+                # print(permutation[i], "           " ,   i)
             
-            for circle in circles:
-                self.play(Create(circle))
+            for animation in animations:
+                self.play(animation)
 
+            self.wait(1)
                 # self.play()
 
 
